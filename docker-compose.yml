@@ -1,0 +1,28 @@
+version: '3'
+
+services:
+  django:
+    build: /home/tony/grafana_test/
+    ports:
+      - "8000:8000"
+    networks:
+      - mynetwork
+
+  grafana:
+    image: grafana/grafana
+    ports:
+      - "3000:3000"
+    networks:
+      - mynetwork
+
+  prometheus:
+    image: prom/prometheus
+    ports:
+      - "9090:9090"
+    networks:
+      - mynetwork
+
+networks:
+  mynetwork:
+    driver: bridge
+
